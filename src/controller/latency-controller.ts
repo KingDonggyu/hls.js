@@ -129,6 +129,10 @@ export default class LatencyController implements ComponentAPI {
     this.hls = this.timeupdateHandler = null;
   }
 
+  public clearStallLatencyPenalty(): void {
+    this.stallCount = 0;
+  }
+
   private registerListeners() {
     this.hls.on(Events.MEDIA_ATTACHED, this.onMediaAttached, this);
     this.hls.on(Events.MEDIA_DETACHING, this.onMediaDetaching, this);
