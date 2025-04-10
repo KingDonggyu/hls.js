@@ -970,6 +970,10 @@ export default class Hls implements HlsEventEmitter {
   get forceStartLoad(): boolean {
     return this.streamController.forceStartLoad;
   }
+
+  public clearStallLatencyPenalty(): void {
+    this.latencyController.clearStallLatencyPenalty();
+  }
 }
 
 export type {
