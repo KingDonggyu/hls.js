@@ -19,6 +19,7 @@ export default class LatencyController implements ComponentAPI {
   private currentTime: number = 0;
   private stallCount: number = 0;
   private _latency: number | null = null;
+  private lastPlaybackRateIncreaseTime: number | null = null;
   private timeupdateHandler = () => this.timeupdate();
 
   constructor(hls: Hls) {
@@ -236,6 +237,13 @@ export default class LatencyController implements ComponentAPI {
       distanceFromTarget > 0.05 &&
       this.forwardBufferLength > 1
     ) {
+      // 최신 playbackRate 증가 시간이 3초 이하인 경우 playbackRate 변경 ❌
+      if (
+        this.lastPlaybackRateIncreaseTime &&
+        (Date.now() - this.lastPlaybackRateIncreaseTime) / 1000 <= 3
+      ) {
+        return;
+      }
       const max = Math.min(2, Math.max(1.0, maxLiveSyncPlaybackRate));
       const rate =
         Math.round(
@@ -243,6 +251,7 @@ export default class LatencyController implements ComponentAPI {
             20,
         ) / 20;
       media.playbackRate = Math.min(max, Math.max(1, rate));
+      this.lastPlaybackRateIncreaseTime = Date.now();
     } else if (media.playbackRate !== 1 && media.playbackRate !== 0) {
       media.playbackRate = 1;
     }
