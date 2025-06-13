@@ -140,6 +140,10 @@ export default class LatencyController implements ComponentAPI {
     this.hls = null;
   }
 
+  public clearStallLatencyPenalty(): void {
+    this.stallCount = 0;
+  }
+
   private registerListeners() {
     const { hls } = this;
     if (!hls) {

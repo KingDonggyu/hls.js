@@ -1030,6 +1030,10 @@ export default class Hls implements HlsEventEmitter {
     );
   }
 
+  public clearStallLatencyPenalty(): void {
+    this.latencyController.clearStallLatencyPenalty();
+  }
+
   /**
    * Get the complete list of audio tracks across all media groups
    */

@@ -2032,6 +2032,8 @@ class Hls implements HlsEventEmitter {
     get capLevelToPlayerSize(): boolean;
     // Warning: (ae-setter-with-docs) The doc comment for the property "capLevelToPlayerSize" must appear on the getter, not the setter.
     set capLevelToPlayerSize(shouldStartCapping: boolean);
+    // (undocumented)
+    clearStallLatencyPenalty(): void;
     readonly config: HlsConfig;
     // (undocumented)
     createController(ControllerClass: any, components: any): any;
