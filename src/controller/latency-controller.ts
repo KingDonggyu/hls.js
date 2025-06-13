@@ -275,7 +275,15 @@ export default class LatencyController implements ComponentAPI {
       return;
     }
     this.hls?.logger.debug(
-      `[latency-controller]: latency=${this.latency.toFixed(3)}, targetLatency=${this.targetLatency?.toFixed(3)}, forwardBufferLength=${this.forwardBufferLength.toFixed(3)}: adjusting playback rate from ${media.playbackRate} to ${playbackRate}`,
+      `[latency-controller]: latency=${this.latency.toFixed(
+        3,
+      )}, targetLatency=${this.targetLatency?.toFixed(
+        3,
+      )}, forwardBufferLength=${this.forwardBufferLength.toFixed(
+        3,
+      )}: adjusting playback rate from ${
+        media.playbackRate
+      } to ${playbackRate}`,
     );
     media.playbackRate = playbackRate;
   }
